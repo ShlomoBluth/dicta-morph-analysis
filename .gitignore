@@ -1,1 +1,11 @@
-node_modules
+# Cypress
+cypress/videos
+cypress/screenshots
+cypress/report
+mochawesome-report
+
+# Dependency directories
+node_modules/
+
+
+gleekbfjekiniecknbkamfmkohkpodhe.crx
