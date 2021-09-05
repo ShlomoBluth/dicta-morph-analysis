@@ -6,6 +6,8 @@
         "configFile": "dicta-shared/reporter-config.json"
     },
     "env":{
+        "DEV_URL":"https://uppy--morph-analysis.netlify.app/",
+        "LIVE_URL":"",
         "TOOL_TESTS":false,
         "REQUESTS_TESTS":true
     }
