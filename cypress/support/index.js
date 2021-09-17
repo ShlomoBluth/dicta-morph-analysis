@@ -19,3 +19,8 @@ import '../../dicta-shared/index.js'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    //debugger
+    return false;
+});
