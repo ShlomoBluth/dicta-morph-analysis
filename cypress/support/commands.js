@@ -3,7 +3,7 @@ import 'cypress-file-upload';
 
 
 Cypress.Commands.add('morphAnalysisRunRequest',({language,status=200,message='',delaySeconds=0})=>{
-    cy.setLanguageMode(language)
+    cy.setLanguageMode({language:language})
     if(message.length>0){
         cy.contains(message).should('not.exist')
     }
@@ -13,7 +13,7 @@ Cypress.Commands.add('morphAnalysisRunRequest',({language,status=200,message='',
         ' מוגבר, אך עדיין זעיר יחסית, ללקות בדלקת בשריר הלב עבור מחוסנים - '+
         'אולם הסיכון הזה גבוה פי ארבעה עבור מי שלא התחסן ונדבק בקורונה')
     cy.get('[id="del-btn"]').should('exist')
-    cy.intercept('/api',{
+    cy.intercept('**/addnikud',{
         delayMs:1000*delaySeconds,
         statusCode: status
     })
@@ -30,7 +30,7 @@ Cypress.Commands.add('morphAnalysisRunRequest',({language,status=200,message='',
 
 Cypress.Commands.add('morphAnalysisUploadRequest',({language,status=200,message=''
 ,delaySeconds=0,reqType})=>{
-    cy.setLanguageMode(language)
+    cy.setLanguageMode({language:language})
     if(message.length>0){
         cy.contains(message).should('not.exist')
     }
