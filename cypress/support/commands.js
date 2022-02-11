@@ -40,7 +40,7 @@ Cypress.Commands.add('morphAnalysisUploadRequest',({language,status=200,message=
         statusCode: status
         }
     )
-    cy.get('button').contains(/^Upload file$|^העלאת קובץ$/g).click({force:true})
+    cy.get('button').contains(/Upload|העלאת/g).click({force:true})
     cy.get('input[type="file"]').attachFile('tuvtaamvadaat-014.txt')
     cy.get('[class*="spinner"]',{timeout:1000*20}).should('exist')
 
