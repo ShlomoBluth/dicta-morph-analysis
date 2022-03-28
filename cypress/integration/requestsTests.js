@@ -27,38 +27,46 @@ urls.forEach((urlValue,urlKey)=>{
 
             it('Error message for api response with status code 500 when clicking the run button of '+
             'morph analysis page in hebrew mode',()=>{
-                cy.morphAnalysisRunRequest({
-                    language:'Hebrew',
-                    status:500,
-                    message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
-                })
+                if(urlKey=='live'){
+                    cy.morphAnalysisRunRequest({
+                        language:'Hebrew',
+                        status:500,
+                        message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
+                    })
+                }
             })
     
             it('Error message for api response with status code 500 when clicking the run button of'+
             ' morph analysis page in english mode',()=>{
-                cy.morphAnalysisRunRequest({
-                    language:'English',
-                    status:500,
-                    message:'Oops. Something went wrong Please try again later',
-                })
+                if(urlKey=='live'){
+                    cy.morphAnalysisRunRequest({
+                        language:'English',
+                        status:500,
+                        message:'Oops. Something went wrong Please try again later',
+                    })
+                }
             })
     
             it('Error message for api response with a delay of 5 minutes when clicking the run button'+
             ' of morph analysis page in hebrew mode',()=>{
-                cy.morphAnalysisRunRequest({
-                    language:'Hebrew',
-                    message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
-                    delaySeconds: 60*5
-                })
+                if(urlKey=='live'){
+                    cy.morphAnalysisRunRequest({
+                        language:'Hebrew',
+                        message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',
+                        delaySeconds: 60*5
+                    })
+                }
             })
     
             it('Error message for api response with a delay of 5 minutes when clicking the run button'+
             ' of morph analysis page in english mode',()=>{
-                cy.morphAnalysisRunRequest({
-                    language:'English',
-                    message:'Oops. Something went wrong Please try again later',
-                    delaySeconds: 60*5
-                })
+                if(urlKey=='live'){
+                    cy.morphAnalysisRunRequest({
+                        language:'English',
+                        message:'Oops. Something went wrong Please try again later',
+                        delaySeconds: 60*5
+                    })
+                }
             })
         
             it('Error message for POST **/files response with status code 500 when clicking the run button '+
@@ -133,7 +141,7 @@ urls.forEach((urlValue,urlKey)=>{
             })
     
             it('Error message for PATCH **/files response with status with a delay of 1 minutes when'+
-            ' clicking the run button of citation page in hebrew mode',()=>{
+            ' clicking the run button of citation page in english mode',()=>{
                 cy.morphAnalysisUploadRequest({
                     language:'English',
                     delaySeconds: 15,
