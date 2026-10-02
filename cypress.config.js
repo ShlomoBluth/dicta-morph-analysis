@@ -10,13 +10,12 @@ module.exports = defineConfig({
   env: {
     DEV_URL: 'https://uppy--morph-analysis.netlify.app/',
     LIVE_URL: 'https://morph-analysis.dicta.org.il/',
-    TOOL_TESTS: false,
-    REQUESTS_TESTS: true,
   },
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
+      require('./dicta-shared/videoCleanup')(on)
       return require('./cypress/plugins/index.js')(on, config)
     },
     baseUrl: 'https://uppy--morph-analysis.netlify.app/',
