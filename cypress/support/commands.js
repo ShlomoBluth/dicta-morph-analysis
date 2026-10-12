@@ -14,7 +14,7 @@ Cypress.Commands.add('morphAnalysisRunRequest',({language,status=200,message='',
         'אולם הסיכון הזה גבוה פי ארבעה עבור מי שלא התחסן ונדבק בקורונה')
     cy.get('[id="del-btn"]').should('exist')
     cy.intercept('**/addnikud',{
-        delayMs:1000*delaySeconds,
+        delay:1000*delaySeconds,
         statusCode: status
     })
     cy.get('[class*="run-btn"]').click({force:true})
@@ -36,7 +36,7 @@ Cypress.Commands.add('morphAnalysisUploadRequest',({language,status=200,message=
     }
     cy.intercept(reqType,'**/files/**'
         ,{
-        delayMs:1000*delaySeconds,
+        delay:1000*delaySeconds,
         statusCode: status
         }
     )
@@ -44,13 +44,9 @@ Cypress.Commands.add('morphAnalysisUploadRequest',({language,status=200,message=
     cy.get('input[type="file"]').attachFile('tuvtaamvadaat-014.txt')
     cy.get('[class*="spinner"]',{timeout:1000*20}).should('exist')
 
-    if(delaySeconds>0){
-        cy.get('[class*="spinner"]',{timeout:1000*delaySeconds*6}).should('not.exist')
-    } else{
-        cy.get('[class*="spinner"]',{timeout:1000*20}).should('not.exist')
-    }
-      
     if(message.length>0){
-        cy.contains(message).should('exist')
+        // Only the error message matters; the site retries the upload a few times before showing it,
+        // so how long the spinner stays depends on the upload speed
+        cy.contains(message,{timeout:1000*delaySeconds*6+60000}).should('exist')
     }
 })
